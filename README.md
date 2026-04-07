@@ -1,22 +1,22 @@
 # Scaleway Volume Backup to Object Storage
 This project provides an automated way to:
 
-- **Create a daily snapshot of a Scaleway block volume
-- **Export it to Scaleway Object Storage (S3-compatible)
-- **Run via Scaleway Serverless Jobs
-- **Secure credentials using Secret Manager
+- Create a daily snapshot of a Scaleway block volume
+- Export it to Scaleway Object Storage (S3-compatible)
+- Run via Scaleway Serverless Jobs
+- Secure credentials using Secret Manager
 
 ---
 
 ## Requirements
 Before running the script, ensure you have:
-- **Scaleway account
+- Scaleway account
 Create API credentials and save your SCW_ACCESS_KEY and SCW_SECRET_KEY.
 https://console.scaleway.com/project/credentials
-- **Project + Organization
-- **Block volume to back up
-- **Object Storage bucket for storing snapshots
-- **Secret Manager enabled enabled
+- Project + Organization
+- Block volume to back up
+- Object Storage bucket for storing snapshots
+- Secret Manager enabled enabled
 
 ---
 
