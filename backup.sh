@@ -5,6 +5,12 @@ log() {
   echo "[$(date -u +'%Y-%m-%dT%H:%M:%SZ')] $*"
 }
 
+get_secret() { scw secret version access "$1" | jq -r '.data' | base64 -d }
+SCW_ACCESS_KEY="$(get_secret access-key)" 
+SCW_SECRET_KEY="$(get_secret secret-key)" 
+SCW_DEFAULT_PROJECT_ID="$(get_secret project-id)" 
+SCW_DEFAULT_ORGANIZATION_ID="$(get_secret organization-id)"
+
 require_env() {
   local name="$1"
   if [[ -z "${!name:-}" ]]; then
@@ -12,15 +18,11 @@ require_env() {
     exit 1
   fi
 }
-
-require_env SCW_ACCESS_KEY
-require_env SCW_SECRET_KEY
-require_env SCW_DEFAULT_ORGANIZATION_ID
-require_env SCW_DEFAULT_PROJECT_ID
 require_env SCW_DEFAULT_REGION
 require_env SCW_DEFAULT_ZONE
 require_env VOLUME_ID
 require_env BUCKET_NAME
+require_env DELETE_SNAPSHOT_AFTER_EXPORT
 
 PREFIX="${PREFIX:-volume-backups}"
 SNAPSHOT_PREFIX="${SNAPSHOT_PREFIX:-daily}"
